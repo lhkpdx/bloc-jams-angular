@@ -14,25 +14,17 @@
          .state('album', {
              url: '/album',
              templateUrl: '/templates/album.html'
-<<<<<<< HEAD
+
           })  
          .state('collection', {
              url: '/collection',
              templateUrl: '/templates/collection.html'
          
          });
- }
-     
-=======
-         })
-         .state('collection', {
-             url: '/collection',
-             templateUrl: '/templates/collection.html'
-         });
- }
->>>>>>> lesson_3
- 
-      angular
+         }
+    
+       angular
          .module('blocJams', ['ui.router'])
          .config(config);
+     
  })();
