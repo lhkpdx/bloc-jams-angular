@@ -14,6 +14,7 @@
          .state('album', {
              url: '/album',
              templateUrl: '/templates/album.html'
+<<<<<<< HEAD
           })  
          .state('collection', {
              url: '/collection',
@@ -22,6 +23,14 @@
          });
  }
      
+=======
+         })
+         .state('collection', {
+             url: '/collection',
+             templateUrl: '/templates/collection.html'
+         });
+ }
+>>>>>>> lesson_3
  
       angular
          .module('blocJams', ['ui.router'])
