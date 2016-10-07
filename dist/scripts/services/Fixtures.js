@@ -47,9 +47,13 @@
         };
          
          Fixtures.getAlbum = function() {
-            return albumLaura;
+            return albumPicasso;
          };
          
+         Fixtures.getCollection = function() {
+             return albumPicasso;
+         };
+          
          return Fixtures;
      }
  
