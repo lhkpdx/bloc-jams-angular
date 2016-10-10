@@ -1,23 +1,22 @@
 (function() {
-     function SongPlayer() {
+     function SongPlayer(Fixtures) {
             /** 
             * @desc Album object for SongPlayer service
             * @type {Object}
             */
             var SongPlayer = {};
-            
             /** 
-            * @desc Album object for current song
-            * @type {Object}
+            * @function getAlbum
+            * @desc Retrieves album from collection
             */
-            var currentSong = null; //Private Attribute
+            var currentAlbum = Fixtures.getAlbum();  //Private attribute
             
             /** 
             * @desc Buzz object audio file
             * @type {Object}
             */
             var currentBuzzObject = null;  //Private Attribute
-         
+                     
             /**  
             * @function playSong
             * @desc Plays the song 
@@ -36,7 +35,7 @@
             var setSong = function(song) {  //Private Function
                 if (currentBuzzObject) {
                     currentBuzzObject.stop();
-                    currentSong.playing = null;
+                    SongPlayer.currentSong.playing = null;
                 }
  
             currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -44,21 +43,37 @@
                 preload: true
             });
  
-            currentSong = song;
+            SongPlayer.currentSong = song;
             };
          
+            /**  
+            * @function getSongIndex
+            * @desc Returns index of current song
+            * @param {Object} index of current song
+            */
+            var getSongIndex = function(song) {  //Private Function
+                return currentAlbum.songs.indexOf(song);
+            };
+         
+
+            /** 
+            * @desc Active song object from list of songs
+            * @type {Object}
+            */
+            SongPlayer.currentSong = null; //Public Attribute
+            
             /**  
             * @function SongPlayer.play
             * @desc Plays the song after checking on/switching to user's choice
             * @param {Object} song
             */
             SongPlayer.play = function(song) {  //Public Function
-                if (currentSong !== song) {
+                song = song || SongPlayer.currentSong;
+                if (SongPlayer.currentSong !== song) {
                     setSong(song);
                     playSong(song);
-                } else if (currentSong === song) {
+                } else if (SongPlayer.currentSong === song) {
                     if (currentBuzzObject.isPaused()) {
-                       // currentBuzzObject.play();
                         playSong(song);
                     }  
                 }
@@ -70,8 +85,26 @@
             * @param {Object} song
             */
             SongPlayer.pause = function(song) {  //Public Function
+                song = song || SongPlayer.currentSong;
                 currentBuzzObject.pause();
                 song.playing = false;
+            };
+         
+            /**  
+            * @function SongPlayer.previous
+            * @desc Retrieves the index for the previous song
+            */
+            SongPlayer.previous = function() {
+                var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+                currentSongIndex--;
+                    if (currentSongIndex < 0) {
+                        currentBuzzObject.stop();
+                        SongPlayer.currentSong.playing = null;
+                    } else {
+                        var song = currentAlbum.songs[currentSongIndex];
+                        setSong(song);
+                        playSong(song);
+                    }              
             };
          
           return SongPlayer;
