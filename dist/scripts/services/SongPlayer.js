@@ -95,9 +95,9 @@
             */
             SongPlayer.pause = function(song) {  //Public Function
                 song = song || SongPlayer.currentSong;
-                //currentBuzzObject.pause();
-                //song.playing = false;
-                stopSong(song);
+                currentBuzzObject.pause();
+                song.playing = false;
+               
             };
          
             /**  
@@ -109,7 +109,7 @@
                 var currentSongIndex = getSongIndex(SongPlayer.currentSong);
                 currentSongIndex--;
                     if (currentSongIndex < 0) {
-                        stopSong(song);
+                        stopSong(SongPlayer.currentSong);
                     } else {
                         var song = currentAlbum.songs[currentSongIndex];
                         setSong(song);
@@ -126,7 +126,7 @@
                var currentSongIndex = getSongIndex(SongPlayer.currentSong);
                currentSongIndex++;
                  if(currentSongIndex < 0) {
-                    stopSong(song);
+                    stopSong(SongPlayer.currentSong);
                  } else {
                      var song = currentAlbum.songs[currentSongIndex];
                      setSong(song);

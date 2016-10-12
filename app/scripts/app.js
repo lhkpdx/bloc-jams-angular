@@ -24,7 +24,8 @@
              templateUrl: '/templates/collection.html'
          
          });
-         }
+         
+    }
     
        angular
          .module('blocJams', ['ui.router'])
