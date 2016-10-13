@@ -20,6 +20,15 @@
                 scope.max = 100;
                 
                 var seekBar = $(element);
+                
+                attributes.$observe('value', function(newValue) {
+                     scope.value = newValue;
+                 });
+
+                 attributes.$observe('max', function(newValue) {
+                     scope.max = newValue;
+                 });
+
  
                 var percentString = function () {
                     var value = scope.value;
