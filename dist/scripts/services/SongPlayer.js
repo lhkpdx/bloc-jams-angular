@@ -70,6 +70,13 @@
             * @type {Object}
             */
             SongPlayer.currentSong = null; //Public Attribute
+         
+            /**
+             * @desc Current playback time (in seconds) of currently playing song
+             * @type {Number}
+             */
+             SongPlayer.currentTime = null;
+
             
             /**  
             * @function SongPlayer.play
