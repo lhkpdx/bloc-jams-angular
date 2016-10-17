@@ -59,7 +59,7 @@
                      $rootScope.$apply(function() {
                          SongPlayer.currentTime = currentBuzzObject.getTime();
                      });
-                });
+               });
  
                 SongPlayer.currentSong = song;
              
@@ -84,8 +84,14 @@
              * @desc Current playback time (in seconds) of currently playing song
              * @type {Number}
              */
-            SongPlayer.currentTime = null;
+            SongPlayer.currentTime = 1;
             
+            /**
+             * @desc Current volume of currently playing song
+             * @type {Number}
+             */
+            SongPlayer.volume = 80;
+         
             /**  
             * @function SongPlayer.play
             * @desc Plays the song after checking on/switching to user's choice
@@ -158,6 +164,12 @@
                  }
                  
              };
+         
+             SongPlayer.setVolume = function(volume) {
+                 if (currentBuzzObject) {
+                     currentBuzzObject.setVolume(volume);
+                 }
+            }
 
         return SongPlayer;
      }
